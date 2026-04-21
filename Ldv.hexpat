@@ -24,13 +24,13 @@ enum ComponentType : u16 {
     Lighting = 0x006E, 
     ChildOfPair = 0x005A,
     
-    ScriptHandle = 0x0047, // dont bother trying to understand scripthanles/scripts
+    ScriptHandle = 0x0047, // dont bother trying to understand scripthandles/scripts
                             // its not implemented properly in the save file
     Script = 0x0048, 
     
     // SHAPES
     // These records don't store a value, just ids
-    // Idk why each shape is it's own record
+    // Idk why each shape is it own record
     BoxShapeType = 0x000A,
     SphereShapeType = 0x000B,
     CylinderShapeType = 0x000C,
@@ -130,7 +130,7 @@ struct Record {
         } else if (type == ComponentType::ScriptHandle) {
             Entry<ScriptHandle> entries[numberOfEntries];
         } else {
-            // the record is purely used for storing and tagging entites, like
+            // the record is purely used for storing and tagging entities, like
             // shape components. 
             EntityId entries[numberOfEntries];
         }
