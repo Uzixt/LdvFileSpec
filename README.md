@@ -17,6 +17,7 @@ I may have interpreted some of it wrongly, but this information is enough to par
   - [Data Types](#data-types)
     - [EntityId](#entityid)
     - [Vec3](#vec3)
+    - [Physics](#physics)
     - [Quat](#quat)
     - [Color3](#color3)
     - [String](#string)
@@ -104,7 +105,7 @@ As mentioned before, if the `Value Size` is `0` and the component is not `Script
 | WedgeShapeType    | `0x000E` | 0          | *(tag)*     |  |
 | PhysicsVec3       | `0x0014` | 12         | `Vec3`      |  |
 | Anchored          | `0x0015` | 0          | *(tag)*     | Only spawnParts can be anchored right now |
-| UNKNOWN_3         | `0x0016` | ?          | ?           | I only saw this once but haven't figured out what it is lol |
+| Locked            | `0x0016` | ?          | ?           |  |
 | Color3            | `0x001E` | 12         | `Color3`    |  |
 | Transparency      | `0x001F` | 4          | `float`     |  |
 | Material          | `0x0020` | 8          | `u64`       | See below for material enum |
@@ -163,6 +164,15 @@ An 8-byte reference to an entity. Luduvo reuses entity slots, so the generation 
 | x     | `float` |
 | y     | `float` |
 | z     | `float` |
+
+
+### Physics
+
+| Field       | Format  |
+|:------------|:--------|
+| Friction    | `float` |
+| Restitution | `float` |
+| Density     | `float` |
 
 
 ### Quat
