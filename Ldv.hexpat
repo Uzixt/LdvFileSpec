@@ -13,9 +13,9 @@ enum ComponentType : u16 {
     Size = 0x0003,
     Name = 0x0004,
     
-    PhysicsVec3 = 0x0014,
+    Physics = 0x0014,
     Anchored = 0x0015, 
-    UNKNOWN_3 = 0x0016, // idk what this is, ive only seen it in one file lol
+    Locked = 0x0016, 
     Color3 = 0x001E,
     Transparency = 0x001F,
     Material = 0x0020,
@@ -46,6 +46,12 @@ enum ComponentType : u16 {
 struct Vec3 {float x, y, z;}; 
 struct Quat {float x, y, z, w;}; // Rotation is stored as quaternions
 struct Color3 {float R, G, B;};
+
+struct Physics {
+    float Friction;
+    float Restitution;
+    float Density;
+};
 
 struct String {char text[64];};
 
@@ -129,12 +135,13 @@ struct Record {
             EntityId entries[numberOfEntries];
         }
     } else if (type == ComponentType::Position || 
-        type == ComponentType::Size ||
-        type == ComponentType::PhysicsVec3) {
+        type == ComponentType::Size) {
         // components which store vec3 data
             Entry<Vec3> entries[numberOfEntries];
     } else if (type == ComponentType::Color3) {
         Entry<Color3> entries[numberOfEntries];
+    } else if (type == ComponentType::Physics) {
+        Entry<Physics> entries[numberOfEntries];
     } else if (type == ComponentType::Rotation) {
         Entry<Quat> entries[numberOfEntries];
     } else if (type == ComponentType::Name) {
